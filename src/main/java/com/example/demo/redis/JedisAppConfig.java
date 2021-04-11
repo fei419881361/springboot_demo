@@ -2,8 +2,6 @@ package com.example.demo.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 
 /**
  * @author zhanglf
@@ -11,10 +9,10 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
  */
 @Configuration
 public class JedisAppConfig {
-    @Bean
-    public JedisConnectionFactory redisConnectionFactory() {
-
-        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", 6379);
-        return new JedisConnectionFactory(config);
-    }
+//    @Bean
+//    public JedisConnectionFactory redisConnectionFactory() {
+//
+//        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", 6379);
+//        return new JedisConnectionFactory(config);
+//    }
 }

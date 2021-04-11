@@ -29,12 +29,12 @@ public class Actviti7DemoApplicationTests {
 
     @Test
     public void contextLoads(){
-        securityUtil.logInAs("system");
-        Page<ProcessDefinition> processDefinitionPage = processRuntime.processDefinitions(Pageable.of(0, 10));
-        System.out.println(" 可 用 的 流 程 定 义 数 量 ： " + processDefinitionPage.getTotalItems());
-        for (org.activiti.api.process.model.ProcessDefinition pd :
-                processDefinitionPage.getContent()) {
-            System.out.println("流程定义：" + pd);
-        }
+//        securityUtil.logInAs("system");
+//        Page<ProcessDefinition> processDefinitionPage = processRuntime.processDefinitions(Pageable.of(0, 10));
+//        System.out.println(" 可 用 的 流 程 定 义 数 量 ： " + processDefinitionPage.getTotalItems());
+//        for (org.activiti.api.process.model.ProcessDefinition pd :
+//                processDefinitionPage.getContent()) {
+//            System.out.println("流程定义：" + pd);
+//        }
     }
 }
