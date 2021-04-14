@@ -1,8 +1,6 @@
 package com.example.demo.jwt;
 
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
@@ -44,4 +42,33 @@ public class MyJWT {
 //
 //        /// ... etc ...
     }
+
+    private static int ttl = 1000 * 60 * 100 ; //100分钟
+    private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    public static String createJwt(String email, String subject, String role) {
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+        JwtBuilder builder = Jwts.builder().setId(email)
+                .setSubject(subject)
+                .setIssuedAt(now)
+                .signWith(key).claim("role", role);
+        if (ttl > 0) {
+            builder.setExpiration(new Date(nowMillis + ttl));
+        }
+        return builder.compact();
+    }
+    public static Claims parseJWT(String jwtStr) {
+
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwtStr).getBody();
+            //OK, we can trust this JWT
+            System.out.println("parse success");
+        } catch (JwtException e) {
+            //don't trust the JWT!
+            System.out.println("jwt error");
+        }
+        return null;
+    }
+
+
 }
