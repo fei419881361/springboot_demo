@@ -10,9 +10,7 @@ import com.example.demo.response.SuccessResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -20,7 +18,8 @@ import javax.validation.Valid;
  * @author zhanglf
  * @Date 2021/4/14 下午9:47
  */
-@RestController("login")
+@RestController
+@RequestMapping("login")
 public class LoginController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -31,7 +30,7 @@ public class LoginController {
      * @return
      */
     @PostMapping("passwordLogin")
-    public BaseResponse passwordLogin(@Valid PasswordLoginRequest loginRequest){
+    public BaseResponse passwordLogin(@Valid @RequestBody PasswordLoginRequest loginRequest){
         logger.info("账号密码登录，email:{}", loginRequest.getEmail());
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.like("email", loginRequest.getEmail());
